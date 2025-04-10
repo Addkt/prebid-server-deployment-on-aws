@@ -59,14 +59,17 @@ jobs:
         run: bash ./run-unit-tests.sh --in-venv 1
       
       - name: Build
-        working-directory: ./source/infrastructure
+        working-directory: ./source
         run: |
           . $VENV
+          cd infrastructure
           cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
           cdk synth
       
       - name: Deploy
-        working-directory: ./source/infrastructure
+        working-directory: ./source
+
         run: | 
           . $VENV
+          cd infrastructure
           cdk deploy
