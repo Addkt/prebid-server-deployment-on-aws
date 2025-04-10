@@ -50,6 +50,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          source .venv/bin/activate
           cd source
           npm install -g aws-cdk
           poetry install
