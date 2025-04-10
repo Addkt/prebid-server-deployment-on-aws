@@ -41,12 +41,8 @@ jobs:
           cd source
           python3 -m pip install --upgrade pip
           pip install -r requirements-poetry.txt
-          poetry install
+          poetry install --with dev
           npm install -g aws-cdk
-
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=home/runner/work/prebid-server-deployment-on-aws" >> $GITHUB_ENV
-        shell: bash
 
 
       - name: Run tests
