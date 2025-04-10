@@ -39,9 +39,10 @@ jobs:
       - name: Install Dependencies
         run: |
           cd source
-          python3 -m pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements-poetry.txt
-          poetry install --with dev
+          poetry install 
+          python -m poetry config virtualenvs.in-project true
           npm install -g aws-cdk
 
 
