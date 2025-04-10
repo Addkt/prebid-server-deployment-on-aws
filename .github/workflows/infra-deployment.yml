@@ -69,4 +69,6 @@ jobs:
           cdk synth
       
       - name: Deploy
-        run: cdk deploy
+        run: | 
+          cd source
+          cdk deploy
