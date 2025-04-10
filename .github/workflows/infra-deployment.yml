@@ -61,12 +61,12 @@ jobs:
       - name: Build
         working-directory: ./source/infrastructure
         run: |
-          . $ENV
+          . $VENV
           cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
           cdk synth
       
       - name: Deploy
         working-directory: ./source/infrastructure
         run: | 
-          . $ENV
+          . $VENV
           cdk deploy
