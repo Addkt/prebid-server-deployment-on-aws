@@ -46,7 +46,7 @@ jobs:
 
 
       - name: Run tests
-        skip: true
+        if: false
         run: |
           cd deployment
           bash ./run-unit-tests.sh --in-venv 1
