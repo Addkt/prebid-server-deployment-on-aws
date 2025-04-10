@@ -33,6 +33,8 @@ class ECSServiceConstruct(Construct):
             cluster=prebid_cluster,
             task_definition=prebid_task_definition,
             vpc_subnets=ec2.SubnetSelection(subnets=prebid_task_subnets),
+            min_healthy_percent=globals.FARGATE_MIN_HEALTHY_PERCENT,
+            max_healthy_percent=globals.FARGATE_MAX_HEALTHY_PERCENT,
             capacity_provider_strategies=[
                 ecs.CapacityProviderStrategy(
                     capacity_provider="FARGATE",
