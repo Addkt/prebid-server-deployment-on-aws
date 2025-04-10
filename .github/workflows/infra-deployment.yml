@@ -54,7 +54,6 @@ jobs:
           poetry install
 
       - name: Run tests
-        if: false
         working-directory: ./deployment
         run: bash ./run-unit-tests.sh --in-venv 1
       
