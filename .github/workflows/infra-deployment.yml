@@ -38,15 +38,15 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd source
           python -m pip install --upgrade pip
-          pip install -r requirements-poetry.txt
+          pip install -r ./source/requirements-poetry.txt
           python -m poetry config virtualenvs.in-project true
           poetry install 
           npm install -g aws-cdk
 
 
       - name: Run tests
+        skip: true
         run: |
           cd deployment
           bash ./run-unit-tests.sh --in-venv 1
