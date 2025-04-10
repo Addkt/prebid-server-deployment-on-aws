@@ -15,7 +15,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with: 
           aws-region: ${{ secrets.AWS_REGION }}
@@ -36,6 +36,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd source
+          python -m pip install --upgrade pip
           pip install -r requirements-poetry.txt
           poetry install
           npm install -g aws-cdk
