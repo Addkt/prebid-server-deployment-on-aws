@@ -62,8 +62,9 @@ jobs:
       
       - name: Build 
         run: |
-          source $VENV
-          cd source/infrastructure
+          cd source
+          poetry install
+          cd infrastructure
           cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
           cdk synth
       
