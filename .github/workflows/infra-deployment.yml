@@ -45,30 +45,28 @@ jobs:
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
-          virtualenvs-path: .venv
           installer-parallel: true
 
       - name: Install Dependencies
+        working-directory: ./source
         run: |
-          cd source
           npm install -g aws-cdk
           poetry install
 
       - name: Run tests
         if: false
-        run: |
-          cd deployment
-          bash ./run-unit-tests.sh --in-venv 1
+        working-directory: ./deployment
+        run: bash ./run-unit-tests.sh --in-venv 1
       
-      - name: Build 
+      - name: Build
+        working-directory: ./source/infrastructure
         run: |
-          cd source
-          . .venv/bin/activate
-          cd infrastructure
+          . $ENV
           cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
           cdk synth
       
       - name: Deploy
+        working-directory: ./source/infrastructure
         run: | 
-          cd source
+          . $ENV
           cdk deploy
