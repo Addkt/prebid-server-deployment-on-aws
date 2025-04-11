@@ -2,9 +2,7 @@ name: AWS CDK Deployment
 
 on:
   push:
-    branches: 
-      - main
-      - save
+    branches: longitude
 
 permissions:
   contents: read
