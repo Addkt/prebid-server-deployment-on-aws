@@ -25,7 +25,7 @@ from .cloudtrail_construct import CloudTrailConstruct
 
 
 class PrebidServerStack(SolutionStack):
-    name = "prebid-server-deployment-on-aws"
+    name = "longitude-s2s"
     description = "Prebid Server Deployment on AWS"
     template_filename = "prebid-server-deployment-on-aws.template"
 
