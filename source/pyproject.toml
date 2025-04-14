@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "longitude-s2s"
+name = "prebid-server-deployment-on-aws"
 version = "1.1.1"
 description = "Prebid Server Deployment on AWS - Easily deploy and operate a scalable Prebid Server for programmatic advertising auctions"
 license = "MIT"
