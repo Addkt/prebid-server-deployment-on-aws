@@ -1,8 +1,8 @@
 name: AWS CDK Deployment
 
 on:
-  push:
-    branches: longitude
+  pull_request:
+    branches: [longitude]
 
 permissions:
   contents: read
@@ -60,11 +60,3 @@ jobs:
           . $VENV
           cd infrastructure
           cdk synth
-      
-      - name: Deploy
-        working-directory: ./source
-
-        run: | 
-          . $VENV
-          cd infrastructure
-          cdk deploy --require-approval never
