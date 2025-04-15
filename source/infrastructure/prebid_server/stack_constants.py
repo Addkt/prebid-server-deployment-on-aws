@@ -66,4 +66,4 @@ RESOURCE_NAMESPACE = "aws:ResourceAccount"
 
 # CloudFront settings
 SSL_CERTIFICATE_ARN = "arn:aws:acm:us-east-1:463470947511:certificate/e5848f93-debb-473d-a307-97b8d1fabe75"
-DOMAIN_NAMES = ["example.com"]
+DOMAIN_NAMES = ["s2s.lngtd.com"]

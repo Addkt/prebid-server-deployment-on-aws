@@ -7,7 +7,8 @@ from aws_cdk import (
     aws_kms as kms,
     aws_s3 as s3,
     aws_cloudfront_origins as cloudfront_origins,
-    aws_iam as iam
+    aws_iam as iam,
+    aws_certificatemanager as certificatemanager
 )
 
 from aws_cdk import Aws, CustomResource, Duration, RemovalPolicy
@@ -258,8 +259,8 @@ class CloudFrontWafConstruct(Construct):
             default_behavior=default_behavior,
             web_acl_id=waf_webacl_arn,
             enable_logging=True,
-            # domain_names=globals.DOMAIN_NAMES,
-            # certificate=Certificate.from_certificate_arn(self, "MyCertificate", globals.SSL_CERTIFICATE_ARN),
+            domain_names=globals.DOMAIN_NAMES,
+            certificate=certificatemanager.Certificate.from_certificate_arn(self, "sslCertificate", globals.SSL_CERTIFICATE_ARN),
             log_bucket=cloudfront_access_logs_bucket,
         )
 
