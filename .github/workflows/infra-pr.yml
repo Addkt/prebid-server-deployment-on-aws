@@ -1,4 +1,4 @@
-name: AWS CDK Deployment
+name: AWS CDK PR
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  pr-test:
     runs-on: ubuntu-latest
 
     steps:
