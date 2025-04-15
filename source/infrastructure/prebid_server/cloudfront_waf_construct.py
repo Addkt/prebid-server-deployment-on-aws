@@ -258,6 +258,8 @@ class CloudFrontWafConstruct(Construct):
             default_behavior=default_behavior,
             web_acl_id=waf_webacl_arn,
             enable_logging=True,
+            # domain_names=globals.DOMAIN_NAMES,
+            # certificate=Certificate.from_certificate_arn(self, "MyCertificate", globals.SSL_CERTIFICATE_ARN),
             log_bucket=cloudfront_access_logs_bucket,
         )
 
