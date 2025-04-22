@@ -1,0 +1,70 @@
+name: AWS CDK Deployment
+
+on:
+  push:
+    branches: longitude
+
+permissions:
+  contents: read
+  
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
+          aws-session-token: ${{ secrets.AWS_ACCESS_TOKEN }}
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Install Dependencies
+        working-directory: ./source
+        run: |
+          npm install -g aws-cdk
+          poetry install
+
+      - name: Run tests
+        working-directory: ./deployment
+        run: bash ./run-unit-tests.sh --in-venv 1
+      
+      - name: Build
+        working-directory: ./source
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk synth
+      
+      - name: Deploy
+        working-directory: ./source
+
+        run: | 
+          . $VENV
+          cd infrastructure
+          cdk deploy --require-approval never
