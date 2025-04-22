@@ -10,7 +10,7 @@ on:
     paths: deployment/ecr/prebid-server/current-config/**
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: config-deployment-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
