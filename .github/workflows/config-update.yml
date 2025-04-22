@@ -5,10 +5,6 @@ on:
     branches: longitude
     paths: deployment/ecr/prebid-server/current-config/**
 
-  pull_request:
-    branches: longitude
-    paths: deployment/ecr/prebid-server/current-config/**
-
 concurrency:
   group: config-deployment-${{ github.ref }}
   cancel-in-progress: true
