@@ -6,8 +6,6 @@ on:
     paths: deployment/ecr/prebid-server/current-config/**
 
   pull_request:
-    branches: longitude
-    paths: deployment/ecr/prebid-server/current-config/**
   
 concurrency:
   group: ci-${{ github.ref }}
@@ -32,6 +30,6 @@ jobs:
       - name: Restart ECS Cluster Service
         run: |
           aws ecs update-service \
-            --cluster ${{ secrets.AWS_ECS_CLUSTER_NAME }} \
-            --service ${{ secrets.AWS_ECS_SERVICE_NAME }} \
+            --cluster ${{ vars.AWS_ECS_CLUSTER_NAME }} \
+            --service ${{ vars.AWS_ECS_SERVICE_NAME }} \
             --force-new-deployment
