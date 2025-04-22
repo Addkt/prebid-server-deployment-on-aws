@@ -6,7 +6,7 @@ on:
     paths: deployment/ecr/prebid-server/current-config/**
 
   pull_request:
-  
+    
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
