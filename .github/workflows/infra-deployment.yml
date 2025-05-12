@@ -65,4 +65,4 @@ jobs:
         run: | 
           . $VENV
           cd infrastructure
-          cdk deploy --require-approval never
+          cdk deploy --require-approval never --parameters InstallCloudFrontAndWAF=${{ vars.InstallCloudFrontAndWAF }}
