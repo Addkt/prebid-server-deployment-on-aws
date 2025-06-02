@@ -3,7 +3,6 @@ name: AWS CDK Deployment
 on:
   push:
     branches: longitude
-    paths: !deployment/ecr/prebid-server/current-config/**
 
 permissions:
   contents: read
