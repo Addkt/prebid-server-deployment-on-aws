@@ -1,14 +1,15 @@
 # Sets the response for a status check; used for simple health checks.
-status-response: "ok"
+status-response: 'ok'
 
 externalUrl: https://s2s.lngtd.com
 
-analytics: 
-  log: 
+analytics:
+  log:
     enabled: true
 
 adapters:
-
+  ogury:
+    enabled: true
   medianet:
     enabled: true
 
@@ -20,28 +21,28 @@ adapters:
     enabled: true
     endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=68
 
-  kargo: 
+  kargo:
     enabled: true
 
   conversant:
     enabled: true
-  
+
   sharethrough:
     enabled: true
-  
-  generic: 
+
+  generic:
     aliases:
-      nativo: 
-        endpoint:  https://exchange.postrelease.com/esi.json?ntv_epid=7
+      nativo:
+        endpoint: https://exchange.postrelease.com/esi.json?ntv_epid=7
         enabled: true
 
   openx:
     enabled: true
 
-  ix: 
+  ix:
     enabled: true
     endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=192251
-    
+
   epsilon:
     enabled: true
 
@@ -54,7 +55,7 @@ adapters:
     XAPI:
       Username: pb_longitude_ads
       Password: LK0Y31N2B5
-      
+
   pubmatic:
     enabled: true
 
@@ -65,10 +66,10 @@ debug: true # enables logging for debugging requests
 
 price-floors:
   # May need this to enforce price flooring on Prebid Server. Does it require an explicit minimum?
-  enforce-floors: true      # Enable floor enforcement globally on the server
+  enforce-floors: true # Enable floor enforcement globally on the server
   enforce-deal-floors: true # Ensure deal bids also respect floors (optional)
   # enhance-bid-floors: true # Indicates that there is server-side dynamic flooring in custom logic, which is all handled server-side.
-  # bid-floor-fallback: 0.63  # Fallback floor if no floor is set in client payload 
+  # bid-floor-fallback: 0.63  # Fallback floor if no floor is set in client payload
   # floor-minimum: 0.63       # The minimum floor Prebid Server should enforce
 
 metrics:
@@ -113,12 +114,12 @@ settings:
     # Directory for stored responses.
     stored-responses-dir: sample
     # Directory for categories used in bid filtering.
-    categories-dir: 
+    categories-dir:
 
 accounts:
   # Placeholder account configuration
-  - id: "bookrags" # Replace with your actual account ID
-    name: "Bookrags"
+  - id: 'bookrags' # Replace with your actual account ID
+    name: 'Bookrags'
     # Additional optional fields can be added as needed
     # currency: "USD"
     # defaultTtl: 3600 # TTL in seconds for bid responses, if required
@@ -145,7 +146,6 @@ admin-endpoints:
     path: /logging/httpinteraction
     on-application-port: true
     protected: false
-
 
   # Allows changing log levels dynamically.
   logging-changelevel:
