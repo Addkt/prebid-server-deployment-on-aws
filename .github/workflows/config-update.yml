@@ -1,11 +1,6 @@
 name: Update Prebid Config
 
 on:
-  pull_request:
-    branches: [longitude]
-    paths:
-      - deployment/ecr/prebid-server/current-config/**
-
   push:
     branches: longitude
     paths:

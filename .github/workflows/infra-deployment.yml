@@ -1,11 +1,6 @@
 name: AWS CDK Deployment
 
 on:
-  pull_request:
-    branches: [longitude]
-    paths:
-      - source/**
-
   push:
     branches: longitude
     paths:
