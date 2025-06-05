@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: infra-deployment-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
