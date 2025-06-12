@@ -161,7 +161,7 @@ admin-endpoints:
 logging:
   sampling-rate: 0.01
   level:
-    root: INFO # Set the default log level for all packages
+    root: ERROR # Set the default log level for all packages
   change-level:
     max-duration-ms: 3600000 # 1h
   output:
