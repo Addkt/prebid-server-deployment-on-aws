@@ -20,10 +20,6 @@ adapters:
   triplelift:
     enabled: true
     endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=68
-    aliases: 
-      triplelift-s2s: 
-        enabled: true
-        endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=68
 
   kargo:
     enabled: true
@@ -165,8 +161,7 @@ admin-endpoints:
 logging:
   sampling-rate: 0.01
   level:
-    org.prebid.server.log: INFO
-    root: ERROR # Set the default log level for all packages
+    root: INFO # Set the default log level for all packages
   change-level:
     max-duration-ms: 3600000 # 1h
   output:
