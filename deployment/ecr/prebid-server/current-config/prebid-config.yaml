@@ -165,6 +165,7 @@ admin-endpoints:
 logging:
   sampling-rate: 0.01
   level:
+    org.prebid.server.log: INFO
     root: ERROR # Set the default log level for all packages
   change-level:
     max-duration-ms: 3600000 # 1h
