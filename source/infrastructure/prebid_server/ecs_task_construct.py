@@ -30,6 +30,10 @@ class ECSTaskConstruct(Construct):
             "PrebidTaskDef",
             cpu=globals.VCPU,
             memory_limit_mib=globals.MEMORY_LIMIT_MIB,
+            runtime_platform=ecs.RuntimePlatform(
+              operating_system_family=ecs.OperatingSystemFamily.LINUX,
+              cpu_architecture=ecs.CpuArchitecture.ARM64
+            ),
         )
 
         # Add EFS volume to task definition
