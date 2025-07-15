@@ -903,7 +903,7 @@ def prebid_fargate_svc_service(template):
                 },
                 {
                     'CapacityProvider': 'FARGATE_SPOT',
-                    'Weight': 1
+                    'Weight': 10
                 }
             ],
             'Cluster': {
