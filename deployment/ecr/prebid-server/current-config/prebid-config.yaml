@@ -12,6 +12,11 @@ adapters:
     enabled: true
   medianet:
     enabled: true
+  sovrn:
+    enabled: true
+  unruly:
+    enabled: true
+  
 
   appnexus:
     enabled: true
