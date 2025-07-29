@@ -64,13 +64,12 @@ adapters:
 
 debug: true # enables logging for debugging requests
 
-price-floors:
-  # May need this to enforce price flooring on Prebid Server. Does it require an explicit minimum?
-  enforce-floors: true # Enable floor enforcement globally on the server
-  enforce-deal-floors: true # Ensure deal bids also respect floors (optional)
-  # enhance-bid-floors: true # Indicates that there is server-side dynamic flooring in custom logic, which is all handled server-side.
-  # bid-floor-fallback: 0.63  # Fallback floor if no floor is set in client payload
-  # floor-minimum: 0.63       # The minimum floor Prebid Server should enforce
+auction: 
+  price-floors:
+    enabled: true
+    enforce-floors-rate: 100
+    enforce-deal-floors: true
+    use-dynamic-data: false
 
 metrics:
   # Metrics collection configuration.
