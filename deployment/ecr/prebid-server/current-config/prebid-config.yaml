@@ -121,7 +121,7 @@ settings:
     categories-dir:
 
 accounts:
-  - id: 'solitairebliss'
+  - id: '213552'
     adapters:
       ix:
         enabled: true
