@@ -109,17 +109,11 @@ settings:
 
   # Configures settings for stored configurations (often useful in testing or non-production setups).
   filesystem:
-    # Path to the primary settings file.
-    settings-filename: prebid-configs/app-settings.yaml
-    # Directory for stored requests (input from publishers).
+    settings-filename: sample/configs/sample-app-settings.yaml
     stored-requests-dir: sample
-    # Directory for stored impressions.
     stored-imps-dir: sample
-    # Directory for stored responses.
     stored-responses-dir: sample
-    # Directory for categories used in bid filtering.
     categories-dir:
-
 
 gdpr:
   # GDPR settings for handling user consent and privacy.
