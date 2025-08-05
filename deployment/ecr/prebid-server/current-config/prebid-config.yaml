@@ -110,7 +110,7 @@ settings:
   # Configures settings for stored configurations (often useful in testing or non-production setups).
   filesystem:
     # Path to the primary settings file.
-    settings-filename: app-settings.yaml
+    settings-filename: prebid-configs/app-settings.yaml
     # Directory for stored requests (input from publishers).
     stored-requests-dir: sample
     # Directory for stored impressions.
