@@ -107,14 +107,10 @@ settings:
   # Generates a unique ID for bid requests if one is not provided.
   generate-storedrequest-bidrequest-id: true
 
-accounts:
-  - id: solitairebliss
-    adapters:
-      ix:
-        enabled: true
-        endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=213552
-
-
+  # Configures settings for stored configurations (often useful in testing or non-production setups).
+  filesystem:
+    # Path to the primary settings file.
+    settings-filename: app-settings.yaml
 
 gdpr:
   # GDPR settings for handling user consent and privacy.
