@@ -121,12 +121,14 @@ settings:
     categories-dir:
 
 accounts:
-  # Placeholder account configuration
-  - id: 'bookrags' # Replace with your actual account ID
-    name: 'Bookrags'
-    # Additional optional fields can be added as needed
-    # currency: "USD"
-    # defaultTtl: 3600 # TTL in seconds for bid responses, if required
+  # solitairebliss
+  - id: '213552'
+    adapters:
+      ix:
+        enabled: true
+        endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=213552
+
+
 
 gdpr:
   # GDPR settings for handling user consent and privacy.
