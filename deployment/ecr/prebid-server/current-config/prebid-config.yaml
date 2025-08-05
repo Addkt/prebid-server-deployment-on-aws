@@ -107,21 +107,8 @@ settings:
   # Generates a unique ID for bid requests if one is not provided.
   generate-storedrequest-bidrequest-id: true
 
-  # Configures settings for stored configurations (often useful in testing or non-production setups).
-  filesystem:
-    # Path to the primary settings file.
-    settings-filename: sample/configs/sample-app-settings.yaml
-    # Directory for stored requests (input from publishers).
-    stored-requests-dir: sample
-    # Directory for stored impressions.
-    stored-imps-dir: sample
-    # Directory for stored responses.
-    stored-responses-dir: sample
-    # Directory for categories used in bid filtering.
-    categories-dir:
-
 accounts:
-  - id: '213552'
+  - id: solitairebliss
     adapters:
       ix:
         enabled: true
