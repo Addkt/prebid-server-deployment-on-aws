@@ -111,6 +111,15 @@ settings:
   filesystem:
     # Path to the primary settings file.
     settings-filename: app-settings.yaml
+    # Directory for stored requests (input from publishers).
+    stored-requests-dir: sample
+    # Directory for stored impressions.
+    stored-imps-dir: sample
+    # Directory for stored responses.
+    stored-responses-dir: sample
+    # Directory for categories used in bid filtering.
+    categories-dir:
+
 
 gdpr:
   # GDPR settings for handling user consent and privacy.
