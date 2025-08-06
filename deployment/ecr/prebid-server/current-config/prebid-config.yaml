@@ -49,7 +49,7 @@ adapters:
     endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=192251
 
     aliases:
-      solitairebliss-ix:
+      unwind-ix::
         enabled: true
         endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=213552
 
