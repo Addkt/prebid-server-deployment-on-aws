@@ -109,7 +109,7 @@ settings:
 
   # Configures settings for stored configurations (often useful in testing or non-production setups).
   filesystem:
-    settings-filename: app-settings.yaml
+    settings-filename: sample/configs/sample-app-settings.yaml
     stored-requests-dir: sample
     stored-imps-dir: sample
     stored-responses-dir: sample
