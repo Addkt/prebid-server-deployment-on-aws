@@ -37,18 +37,6 @@ PREBID_CONFIGS_DIR="/prebid-configs"
 
 echo "prebid_configs_dir set"
 
-#echo current directory
-echo "Current directory: $(pwd)"
-
-## echo files in directory
-echo "Files in current directory:"
-ls -l
-
-cp "${PREBID_CONFIGS_DIR}/app-settings.yaml" ./sample/configs/sample-app-settings.yaml
-
-
-
-
 /usr/bin/java \
     -DcontainerId=$(if [ -z "$ECS_CONTAINER_METADATA_URI_V4" ]; then echo "default-container-id"; else curl -s "${ECS_CONTAINER_METADATA_URI_V4}/task" | jq -r '.Containers[0].DockerId' 2>/dev/null | cut -d'-' -f1 || echo "default-container-id"; fi) \
     -Dlogging.config=${PREBID_CONFIGS_DIR}/prebid-logging.xml \
