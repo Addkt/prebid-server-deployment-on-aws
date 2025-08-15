@@ -1,11 +1,9 @@
-name: AWS CDK Deployment
-
+name: Update AWS Infrastructure
 on:
-  push:
-    branches: longitude
+  push: 
     paths:
-      - source/**
-
+      - source/infrastructure/**
+      
 permissions:
   contents: read
 
@@ -14,7 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  update-infrastructure:
+    environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -66,4 +65,4 @@ jobs:
         run: |
           . $VENV
           cd infrastructure
-          cdk deploy --require-approval never --parameters InstallCloudFrontAndWAF=${{ vars.InstallCloudFrontAndWAF }}
+          cdk deploy --require-approval never

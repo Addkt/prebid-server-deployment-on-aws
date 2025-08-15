@@ -1,3 +1,28 @@
+# Longitude Fork
+  This is a fork of the original [Prebid Server Deployment on AWS](https://github.com/aws-solutions/prebid-server-deployment-on-aws) solution, customized for the Longitude team. We use this solution for managing multiple prebid server instances. Each account is associated to a specific branch in the repository. Each branch has its own configuration files and deployment settings. Changes on any branch will only affect the corresponding account infrastructure.
+
+  * lngtd-pbs
+  * lngtd-pbs-unwind
+  * lngtd-test
+
+> Deployment for every account is managed through its respective branch, actions and environment variables using github platform. 
+
+## Variables
+Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch.
+
+### SECRETS
+AWS_ACCESS_KEY
+AWS_ACCESS_SECRET
+AWS_ACCESS_TOKEN
+AWS_REGION
+
+### VARS
+AWS_CONFIG_BUCKET_PATH
+AWS_ECS_CLUSTER_NAME
+AWS_ECS_SERVICE_NAME
+INSTALLCLOUDFRONTANDWAF
+SSLCERTIFICATEARN
+
 
 # Prebid Server Deployment on AWS
 
@@ -199,3 +224,21 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+
+
+
+## SECRETS
+  AWS_ACCESS_KEY
+AWS_ACCESS_SECRET
+AWS_ACCESS_TOKEN
+AWS_REGION
+
+
+## VARS
+AWS_CONFIG_BUCKET_PATH=s3://longitude-s2s-containerimageconfigfilesbucketb8caf-ipkvqis67r1m/prebid-server/current/
+AWS_ECS_CLUSTER_NAME=longitude-s2s-PrebidClusterC33B79B4-ZkTo8ZD3kGxd
+AWS_ECS_SERVICE_NAME=longitude-s2s-CloudFrontEntryDeploymentECSServicePrebidFargateServiceC4C20DEC-vrZU4yq5eAdI
+INSTALLCLOUDFRONTANDWAF=Yes
+SSLCERTIFICATEARN=arn:aws:acm:us-east-1:463470947511:certificate/e5848f93-debb-473d-a307-97b8d1fabe75

@@ -2,7 +2,6 @@ name: AWS CDK PR
 
 on:
   pull_request:
-    branches: [longitude]
 
 permissions:
   contents: read
@@ -18,7 +17,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
