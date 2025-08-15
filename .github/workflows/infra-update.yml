@@ -52,19 +52,20 @@ jobs:
         working-directory: ./deployment
         run: bash ./run-unit-tests.sh --in-venv 1
 
+      - name: Bootstrap CDK if needed
+        if: vars.AWS_CONFIG_BUCKET_PATH != ''
+        working-directory: ./source
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+
       - name: Build
         working-directory: ./source
         run: |
           . $VENV
           cd infrastructure
           cdk synth
-
-      - name: Bootstrap CDK if needed
-        if: vars.AWS_CONFIG_BUCKET_PATH != ''
-        working-directory: ./source
-        run: |
-          cd infrastructure
-          cdk bootstrap
 
       - name: Deploy
         working-directory: ./source
