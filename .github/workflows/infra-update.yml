@@ -59,6 +59,10 @@ jobs:
           cd infrastructure
           cdk synth
 
+      - name: Bootstrap CDK if needed
+        if: vars.AWS_CONFIG_BUCKET_PATH != ''
+        run: cdk bootstrap
+
       - name: Deploy
         working-directory: ./source
 
