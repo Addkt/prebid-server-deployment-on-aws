@@ -40,7 +40,7 @@ class PrebidServerStack(SolutionStack):
             description="Yes - Use the CloudFront and Web Application Firewall to deliver your content. \n No - Skip CloudFront and WAF deployment and use your own content delivery network instead",
             type="String",
             allowed_values=["Yes", "No"],
-            default="No"
+            default="Yes"
         )
 
         ssl_certificate_param = CfnParameter(
