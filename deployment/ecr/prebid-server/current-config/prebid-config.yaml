@@ -8,13 +8,48 @@ analytics:
     enabled: true
 
 adapters:
+  ogury:
+    enabled: true
+  medianet:
+    enabled: true
+  sovrn:
+    enabled: true
+  unruly:
+    enabled: true
+  
+
+  appnexus:
+    enabled: true
+    endpoint: https://ib.adnxs.com/openrtb2 # essential to most bidders, need to verify that the endpoint is correct
+
   triplelift:
     enabled: true
     endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=68
 
+  kargo:
+    enabled: true
+
+  conversant:
+    enabled: true
+
+  sharethrough:
+    enabled: true
+
+  generic:
+    aliases:
+      nativo:
+        endpoint: https://exchange.postrelease.com/esi.json?ntv_epid=7
+        enabled: true
+
+  openx:
+    enabled: true
+
   ix:
     enabled: true
-    endpoint: http://unwindmedia-us-east.lb.indexww.com/pbs?p=213552
+    endpoint: http://longitude-ads-us-east.lb.indexww.com/pbs?p=213552
+
+  epsilon:
+    enabled: true
 
   rubicon:
     enabled: true
@@ -25,6 +60,12 @@ adapters:
     XAPI:
       Username: pb_longitude_ads
       Password: LK0Y31N2B5
+
+  pubmatic:
+    enabled: true
+
+  gumgum:
+    enabled: true
 
 debug: true # enables logging for debugging requests
 

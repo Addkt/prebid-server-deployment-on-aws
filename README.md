@@ -11,17 +11,17 @@
 Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch.
 
 ### SECRETS
-AWS_ACCESS_KEY
-AWS_ACCESS_SECRET
-AWS_ACCESS_TOKEN
-AWS_REGION
+* AWS_ACCESS_KEY
+* AWS_ACCESS_SECRET
+* AWS_ACCESS_TOKEN
+* AWS_REGION
 
 ### VARS
-AWS_CONFIG_BUCKET_PATH
-AWS_ECS_CLUSTER_NAME
-AWS_ECS_SERVICE_NAME
-INSTALLCLOUDFRONTANDWAF
-SSLCERTIFICATEARN
+* AWS_CONFIG_BUCKET_PATH
+* AWS_ECS_CLUSTER_NAME
+* AWS_ECS_SERVICE_NAME
+* INSTALLCLOUDFRONTANDWAF
+* SSLCERTIFICATEARN
 
 
 # Prebid Server Deployment on AWS
