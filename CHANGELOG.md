@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2025-07-30
+
+- Upgrade Prebid Server Java to v3.28.0
+
+## [1.1.3] - 2025-06-23
+
+- Upgrade Prebid Server Java to v3.27.0
+
+## [1.1.2] - 2025-05-22
+
+- Upgrade Prebid Server Java to v3.25.0
+- Upgrade Python dependencies
+- Fix anonymized metrics reporting Lambda
+
 ## [1.1.1] - 2025-03-07
 
 - Upgrade to Prebid Server v3.22 and underlying Docker base image
