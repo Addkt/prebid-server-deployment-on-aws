@@ -35,7 +35,7 @@ echo "entrypoint.sh starting"
 
 PREBID_CONFIGS_DIR="/prebid-configs"
 
-echo "prebid_configs_dir set"
+echo "prebid_configs_dir set" 
 
 /usr/bin/java \
     -DcontainerId=$(if [ -z "$ECS_CONTAINER_METADATA_URI_V4" ]; then echo "default-container-id"; else curl -s "${ECS_CONTAINER_METADATA_URI_V4}/task" | jq -r '.Containers[0].DockerId' 2>/dev/null | cut -d'-' -f1 || echo "default-container-id"; fi) \

@@ -12,7 +12,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Build stage
-FROM public.ecr.aws/docker/library/alpine:3.21 AS build
+FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.21 AS build
 
 # Install required dependencies
 RUN wget -O /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
@@ -42,8 +42,8 @@ java.net.http,java.security.sasl,jdk.naming.dns,jdk.crypto.ec,jdk.security.auth 
 # Copy source build configuration file
 COPY docker-build-config.json docker-build-config.json
 
-# Clone and build in single layer to reduce size
-RUN git clone --single-branch --branch master --depth 1 $(jq -r .GIT_REPO ./docker-build-config.json) && \
+#  Clone and build in single layer to reduce size
+RUN git clone --single-branch --branch master --depth 1 $(jq -r .GIT_REPO ../docker-build-config.json) && \
     cd prebid-server-java && \
     git fetch origin --tags && \
     git checkout $(jq -r .GIT_TAG_VERSION ../docker-build-config.json) && \
@@ -51,7 +51,7 @@ RUN git clone --single-branch --branch master --depth 1 $(jq -r .GIT_REPO ./dock
     rm -rf ~/.m2/ && rm -rf /tmp/*
 
 # Deploy image
-FROM public.ecr.aws/docker/library/alpine:3.21 AS deploy
+FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.21 AS deploy
 WORKDIR /prebid-server-java
 
 # Copy only the minimal required files
@@ -83,7 +83,15 @@ ENV JAVA_OPTS="\
     -Dhttps.protocols=TLSv1.2,TLSv1.3 \
     -Djavax.net.ssl.trustStoreType=PKCS12 \
     -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true \
-    -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3"
+    -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 \
+    -XX:+UseG1GC \
+    -XX:MaxGCPauseMillis=100 \
+    -XX:+ParallelRefProcEnabled=true \
+    -XX:+UseStringDeduplication \
+    -XX:+OptimizeStringConcat \
+    -XX:+UseCompressedOops \
+    -XX:+UseCompressedClassPointers \
+    -XX:+ExitOnOutOfMemoryError"
 
 # Expose ports for the Prebid Server Java application
 EXPOSE 8080 8060

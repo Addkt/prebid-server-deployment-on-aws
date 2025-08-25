@@ -40,7 +40,7 @@ class PrebidServerStack(SolutionStack):
             description="Yes - Use the CloudFront and Web Application Firewall to deliver your content. \n No - Skip CloudFront and WAF deployment and use your own content delivery network instead",
             type="String",
             allowed_values=["Yes", "No"],
-            default="No"
+            default="Yes"
         )
 
         ssl_certificate_param = CfnParameter(
@@ -48,7 +48,7 @@ class PrebidServerStack(SolutionStack):
             id="SSLCertificateARN",
             description="The ARN of an SSL certificate in AWS Certificate Manager associated with a domain name. This field is only required if InstallCloudFrontAndWAF is set to \"No\".",
             type="String",
-            default=globals.SSL_CERTIFICATE_ARN,
+            default="",
         )
         self.solutions_template_options.add_parameter(deploy_cloudfront_and_waf_param, label="",
                                                       group="Content Delivery Network (CDN) Settings")

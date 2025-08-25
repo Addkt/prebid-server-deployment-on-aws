@@ -1,30 +1,29 @@
-name: AWS CDK Deployment
-
+name: Update AWS Infrastructure
 on:
-  push:
-    branches: longitude
+  push: 
     paths:
-      - source/**
-
+      - source/infrastructure/**
+      
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: infra-deployment-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  update-infrastructure:
+    environment: ${{ github.ref_name }}
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ secrets.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
-          aws-session-token: ${{ secrets.AWS_ACCESS_TOKEN }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE }}
+          role-session-name: GitHubActionsSession
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -53,6 +52,14 @@ jobs:
         working-directory: ./deployment
         run: bash ./run-unit-tests.sh --in-venv 1
 
+      - name: Bootstrap CDK if needed
+        if: ${{ vars.AWS_CONFIG_BUCKET_PATH != '' }}
+        working-directory: ./source
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+
       - name: Build
         working-directory: ./source
         run: |
@@ -66,4 +73,4 @@ jobs:
         run: |
           . $VENV
           cd infrastructure
-          cdk deploy --require-approval never --parameters InstallCloudFrontAndWAF=${{ vars.InstallCloudFrontAndWAF }}
+          cdk deploy --require-approval never

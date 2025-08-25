@@ -50,7 +50,7 @@ class ContainerImageConstruct(Construct):
                 self,
                 ECR_REPO_NAME,
                 directory=docker_build_location,
-                platform=Platform.LINUX_AMD64,
+                platform=Platform.LINUX_ARM64
             )
 
             self.image_ecs_obj = ecs.ContainerImage.from_docker_image_asset(asset)
