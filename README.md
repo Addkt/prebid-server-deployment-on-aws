@@ -10,12 +10,11 @@
 > Deployment for every account is managed through its respective branch, actions and environment variables using github platform. 
 
 ## Domain Names and SSL Certificates
-We assume that each account has its own domain name and SSL certificate. The code will create a new certifcate based on the stack_constants. We need a couple of manual steps to complete the configuration:
+We assume that each account has its own domain name and SSL certificate. We need to manually create the ssl certificate in the us-east-1 region and validate it before deploying the stack.
 
-1. Validate the certificate using DNS validation. 
-2. Create a new CNAME record in the DNS provider to point to the CloudFront distribution.
+1. Create a new SSL certificate in the us-east-1 region using AWS Certificate Manager. Use DNS validation and add the required CNAME records to your domain's DNS settings.
+2. Once the certificate is validated, copy the ARN of the certificate and set it in the stack constants 
 
-> For step 1, the stack will not be created until the certificate is validated.
 
 ## Variables
 Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch. 

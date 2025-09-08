@@ -252,10 +252,11 @@ class CloudFrontWafConstruct(Construct):
         )
 
         domain_extra_props = {}
-        if globals.CLOUD_FRONT_DOMAIN_NAMES and globals.CLOUD_FRONT_DOMAIN_CERTIFICATE:
-          certificate = acm.Certificate(self, "Certificate",
-            domain_name=globals.CLOUD_FRONT_DOMAIN_CERTIFICATE,
-            validation=acm.CertificateValidation.from_dns()
+        if globals.CLOUD_FRONT_DOMAIN_NAMES and globals.CLOUD_FRONT_SSL_CERTIFICATE_ARN:
+          certificate = acm.Certificate.from_certificate_arn(
+            self,
+            "CloudFrontCertificate",
+            certificate_arn=globals.CLOUD_FRONT_SSL_CERTIFICATE_ARN
           )
           domain_extra_props["certificate"] = certificate
           domain_extra_props["domain_names"] = globals.CLOUD_FRONT_DOMAIN_NAMES
