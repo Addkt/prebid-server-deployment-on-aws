@@ -62,9 +62,10 @@ CLOUDWATCH_ALARM_NAMESPACE = "AWS/ApplicationELB"
 # Anomaly detection with 2 stdev (medium band)
 ANOMALY_DETECTION_BAND_2 = "ANOMALY_DETECTION_BAND(m1, 2)"
 
-CLOUD_FRONT_NAMESPACE = "AWS/CloudFront"
 RESOURCE_NAMESPACE = "aws:ResourceAccount"
 
 # CloudFront settings
-SSL_CERTIFICATE_ARN = "arn:aws:acm:us-east-1:103855225068:certificate/7f34f27e-0b77-4e11-8fee-5cdba5269c91"
-DOMAIN_NAMES = ["test-s2s.lngtd.com"]
+CLOUD_FRONT_NAMESPACE = "AWS/CloudFront"
+CLOUD_FRONT_DISABLE_WAF = True
+CLOUD_FRONT_DOMAIN_NAMES = ["test-s2s.lngtd.com"]
+CLOUD_FRONT_DOMAIN_CERTIFICATE = "*.lngtd.com"

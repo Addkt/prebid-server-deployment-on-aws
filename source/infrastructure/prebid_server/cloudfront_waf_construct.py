@@ -8,7 +8,7 @@ from aws_cdk import (
     aws_s3 as s3,
     aws_cloudfront_origins as cloudfront_origins,
     aws_iam as iam,
-    aws_certificatemanager as certificatemanager
+    aws_certificatemanager as acm
 )
 
 from aws_cdk import Aws, CustomResource, Duration, RemovalPolicy
@@ -16,8 +16,8 @@ from aws_lambda_layers.aws_solutions.layer import SolutionsLayer
 from aws_solutions.cdk.aws_lambda.layers.aws_lambda_powertools import PowertoolsLayer
 from aws_solutions.cdk.aws_lambda.python.function import SolutionsPythonFunction
 from constructs import Construct
-import prebid_server.stack_constants as globals
 
+import prebid_server.stack_constants as globals
 
 class CloudFrontWafConstruct(Construct):
     def __init__(
@@ -251,15 +251,25 @@ class CloudFrontWafConstruct(Construct):
             response_headers_policy=response_headers_policy,
         )
 
+        domain_extra_props = {}
+        if globals.CLOUD_FRONT_DOMAIN_NAMES and globals.CLOUD_FRONT_DOMAIN_CERTIFICATE:
+          certificate = acm.Certificate(self, "Certificate",
+            domain_name=globals.CLOUD_FRONT_DOMAIN_CERTIFICATE,
+            validation=acm.CertificateValidation.from_dns()
+          )
+          domain_extra_props["certificate"] = certificate
+          domain_extra_props["domain_names"] = globals.CLOUD_FRONT_DOMAIN_NAMES
+
         # create the cloudfront distribution
         self.prebid_cloudfront_distribution = cloudfront.Distribution(
-            self,
-            "PrebidCloudFrontDist",
-            comment="Prebid Server Deployment on AWS",
-            default_behavior=default_behavior,
-            web_acl_id=waf_webacl_arn,
-            enable_logging=True,
-            log_bucket=cloudfront_access_logs_bucket,
+          self,
+          "PrebidCloudFrontDist",
+          comment="Prebid Server Deployment on AWS",
+          default_behavior=default_behavior,
+          web_acl_id=waf_webacl_arn if not globals.CLOUD_FRONT_DISABLE_WAF else None,
+          enable_logging=True,
+          log_bucket=cloudfront_access_logs_bucket,
+          **domain_extra_props
         )
 
         # Suppress cfn_guard rule requiring TLS certificates. The implementation guide

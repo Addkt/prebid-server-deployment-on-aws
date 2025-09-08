@@ -3,26 +3,36 @@
 
   * lngtd-pbs
   * lngtd-pbs-unwind
-  * lngtd-test
+  * lngtd-pbs-accuweather
+  * lngtd-pbs-footballco
+  * lngtd-test (Use for testing purposes only)
 
 > Deployment for every account is managed through its respective branch, actions and environment variables using github platform. 
 
+## Domain Names and SSL Certificates
+We assume that each account has its own domain name and SSL certificate. The code will create a new certifcate based on the stack_constants. We need a couple of manual steps to complete the configuration:
+
+1. Validate the certificate using DNS validation. 
+2. Create a new CNAME record in the DNS provider to point to the CloudFront distribution.
+
+> For step 1, the stack will not be created until the certificate is validated.
+
 ## Variables
-Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch.
+Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch. 
 
 ### SECRETS
-AWS_ACCESS_KEY
-AWS_ACCESS_SECRET
-AWS_ACCESS_TOKEN
-AWS_REGION
+* AWS_ACCESS_KEY
+* AWS_ACCESS_SECRET
+* AWS_ACCESS_TOKEN
+* AWS_REGION
 
 ### VARS
-AWS_CONFIG_BUCKET_PATH
-AWS_ECS_CLUSTER_NAME
-AWS_ECS_SERVICE_NAME
-INSTALLCLOUDFRONTANDWAF
-SSLCERTIFICATEARN
+The following variables are used for updating the fargate service. We need to force a new deployment after updating the configuration setting for the prebid server. 
 
+* AWS_CONFIG_BUCKET_PATH
+* AWS_ECS_CLUSTER_NAME
+* AWS_ECS_SERVICE_NAME
+* AWS_SSL_CERTIFICATE_ARN
 
 # Prebid Server Deployment on AWS
 
