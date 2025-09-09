@@ -1,5 +1,7 @@
 status-response: "ok"
 adapters:
+  yahooAds:
+    enabled: true
   appnexus:
     enabled: true
   ix:
