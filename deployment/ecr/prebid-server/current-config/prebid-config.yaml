@@ -8,6 +8,10 @@ analytics:
     enabled: true
 
 adapters:
+  gumgum:
+    enabled: true
+  yahooAds:
+    enabled: true
   ogury:
     enabled: true
   medianet:
