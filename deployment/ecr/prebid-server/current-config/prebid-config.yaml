@@ -26,7 +26,7 @@ adapters:
 
   triplelift:
     enabled: true
-    endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=68
+    endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=20
 
   kargo:
     enabled: true
