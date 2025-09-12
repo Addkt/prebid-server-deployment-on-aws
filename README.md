@@ -1,3 +1,37 @@
+# Longitude Fork
+  This is a fork of the original [Prebid Server Deployment on AWS](https://github.com/aws-solutions/prebid-server-deployment-on-aws) solution, customized for the Longitude team. We use this solution for managing multiple prebid server instances. Each account is associated to a specific branch in the repository. Each branch has its own configuration files and deployment settings. Changes on any branch will only affect the corresponding account infrastructure.
+
+  * lngtd-pbs
+  * lngtd-pbs-unwind
+  * lngtd-pbs-accuweather
+  * lngtd-pbs-footballco
+  * lngtd-test (Use for testing purposes only)
+
+> Deployment for every account is managed through its respective branch, actions and environment variables using github platform. 
+
+## Domain Names and SSL Certificates
+We assume that each account has its own domain name and SSL certificate. We need to manually create the ssl certificate in the us-east-1 region and validate it before deploying the stack.
+
+1. Create a new SSL certificate in the us-east-1 region using AWS Certificate Manager. Use DNS validation and add the required CNAME records to your domain's DNS settings.
+2. Once the certificate is validated, copy the ARN of the certificate and set it in the stack constants 
+
+
+## Variables
+Each account has its own set of environment variables that are used during deployment. These variables are defined in the GitHub repository and are specific to each account's branch. 
+
+### SECRETS
+* AWS_ACCESS_KEY
+* AWS_ACCESS_SECRET
+* AWS_ACCESS_TOKEN
+* AWS_REGION
+
+### VARS
+The following variables are used for updating the fargate service. We need to force a new deployment after updating the configuration setting for the prebid server. 
+
+* AWS_CONFIG_BUCKET_PATH
+* AWS_ECS_CLUSTER_NAME
+* AWS_ECS_SERVICE_NAME
+* AWS_SSL_CERTIFICATE_ARN
 
 # Prebid Server Deployment on AWS
 

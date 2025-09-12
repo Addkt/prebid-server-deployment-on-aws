@@ -1,0 +1,76 @@
+name: Update AWS Infrastructure
+on:
+  push: 
+    paths:
+      - source/infrastructure/**
+      
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: infra-deployment-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update-infrastructure:
+    environment: ${{ github.ref_name }}
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE }}
+          role-session-name: GitHubActionsSession
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Install Dependencies
+        working-directory: ./source
+        run: |
+          npm install -g aws-cdk
+          poetry install
+
+      - name: Run tests
+        working-directory: ./deployment
+        run: bash ./run-unit-tests.sh --in-venv 1
+
+      - name: Bootstrap CDK if needed
+        if: ${{ vars.AWS_CONFIG_BUCKET_PATH != '' }}
+        working-directory: ./source
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess
+
+      - name: Build
+        working-directory: ./source
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk synth
+
+      - name: Deploy
+        working-directory: ./source
+
+        run: |
+          . $VENV
+          cd infrastructure
+          cdk deploy --require-approval never

@@ -590,7 +590,8 @@ class DataSyncTask(Construct):
             destination_location_arn=self.s3_location.s3_location.attr_location_arn,
             source_location_arn=self.efs_location.efs_location.attr_location_arn,
             schedule=datasync.CfnTask.TaskScheduleProperty(
-                schedule_expression=self.task_schedule
+                schedule_expression=self.task_schedule,
+                status="DISABLED" if globals.DATASYNC_DISABLE else "ENABLED",
             ),
             options=datasync.CfnTask.OptionsProperty(
                 transfer_mode="CHANGED",

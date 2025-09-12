@@ -30,9 +30,13 @@ class ECSServiceConstruct(Construct):
         fargate_service = ecs.FargateService(
             self,
             "PrebidFargateService",
+            desired_count=globals.FARGATE_DESIRED_COUNT,
             cluster=prebid_cluster,
             task_definition=prebid_task_definition,
             vpc_subnets=ec2.SubnetSelection(subnets=prebid_task_subnets),
+            min_healthy_percent=globals.FARGATE_MIN_HEALTHY_PERCENT,
+            max_healthy_percent=globals.FARGATE_MAX_HEALTHY_PERCENT,
+            health_check_grace_period=Duration.seconds(globals.HEALTH_CHECK_GRACE_PERIOD),
             capacity_provider_strategies=[
                 ecs.CapacityProviderStrategy(
                     capacity_provider="FARGATE",
@@ -43,6 +47,7 @@ class ECSServiceConstruct(Construct):
                     weight=globals.FARGATE_SPOT_WEIGHT,
                 ),
             ],
+            platform_version=ecs.FargatePlatformVersion.LATEST
         )
 
         self.alb_target_group = elbv2.ApplicationTargetGroup(
