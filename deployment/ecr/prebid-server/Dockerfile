@@ -12,7 +12,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Build stage
-FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.21 AS build
+FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.22.1 AS build
 
 # Install required dependencies
 RUN wget -O /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
@@ -51,7 +51,7 @@ RUN git clone --single-branch --branch master --depth 1 $(jq -r .GIT_REPO ../doc
     rm -rf ~/.m2/ && rm -rf /tmp/*
 
 # Deploy image
-FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.21 AS deploy
+FROM --platform=linux/arm64 public.ecr.aws/docker/library/alpine:3.22.1 AS deploy
 WORKDIR /prebid-server-java
 
 # Copy only the minimal required files
