@@ -50,8 +50,8 @@ def build_app_fix():
     ]
 )
 def test_build_app(build_app_fix):
-    app_stack = build_app_fix.get_stack_by_name("longitude-s2s")
+    app_stack = build_app_fix.get_stack_by_name("prebid-server-deployment-on-aws")
     assert app_stack is not None
-    assert app_stack.stack_name == "longitude-s2s"
+    assert app_stack.stack_name == "prebid-server-deployment-on-aws"
     assert app_stack.template is not None
     assert app_stack.template["Description"] == "(SO9999test) - Prebid Server Deployment on AWS. Version v99.99.99"

@@ -874,7 +874,7 @@ def prebid_public_load_balancing_listener(template):
 
 def prebid_public_load_balancing_target_group(template):
     template.has_resource_properties("AWS::ElasticLoadBalancingV2::TargetGroup", {
-        'HealthCheckIntervalSeconds': 120,
+        'HealthCheckIntervalSeconds': 60,
         'HealthCheckPath': '/status',
         'HealthCheckTimeoutSeconds': 5,
         'Port': 80,
@@ -918,10 +918,10 @@ def prebid_fargate_svc_service(template):
                     'Rollback': False
                 },
                 'MaximumPercent': 200,
-                'MinimumHealthyPercent': 100
+                'MinimumHealthyPercent': 50
             },
             'EnableECSManagedTags': False,
-            'HealthCheckGracePeriodSeconds': 120,
+            'HealthCheckGracePeriodSeconds': 60,
             'LoadBalancers': [
                 {
                     'ContainerName': 'Prebid-Container',
