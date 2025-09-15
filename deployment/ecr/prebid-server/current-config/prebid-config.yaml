@@ -35,7 +35,7 @@ adapters:
     endpoint: https://ib.adnxs.com/openrtb2 # essential to most bidders, need to verify that the endpoint is correct
   triplelift:
     enabled: true
-    endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=20
+    endpoint: https://tlx.3lift.com/s2s/auction?supplier_id=20 
   generic:
     aliases:
       nativo:

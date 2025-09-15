@@ -67,5 +67,5 @@ RESOURCE_NAMESPACE = "aws:ResourceAccount"
 # CloudFront settings
 CLOUD_FRONT_NAMESPACE = "AWS/CloudFront"
 CLOUD_FRONT_DISABLE_WAF = True
-CLOUD_FRONT_DOMAIN_NAMES = ["test-s2s.lngtd.com"]
-CLOUD_FRONT_SSL_CERTIFICATE_ARN = "arn:aws:acm:us-east-1:103855225068:certificate/7f34f27e-0b77-4e11-8fee-5cdba5269c91"
+CLOUD_FRONT_DOMAIN_NAMES = ["accuweather-s2s.lngtd.com"]
+CLOUD_FRONT_SSL_CERTIFICATE_ARN = "arn:aws:acm:us-east-1:110948416108:certificate/aabded13-fc68-495a-91af-043a84eaa4db"
