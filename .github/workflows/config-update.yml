@@ -9,6 +9,9 @@ concurrency:
   group: config-deployment-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: 
+  id-token: write
+
 jobs:
   update-prebid-config:
     runs-on: ubuntu-latest

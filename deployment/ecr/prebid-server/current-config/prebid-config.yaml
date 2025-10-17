@@ -1,6 +1,4 @@
-# Sets the response for a status check; used for simple health checks.
 status-response: 'ok'
-
 externalUrl: https://footballco-s2s.lngtd.com
 
 analytics:
