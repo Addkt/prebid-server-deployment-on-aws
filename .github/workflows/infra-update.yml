@@ -73,4 +73,4 @@ jobs:
         run: |
           . $VENV
           cd infrastructure
-          cdk deploy --require-approval never
+          cdk deploy --parameters InstallCloudFrontAndWAF=Yes --require-approval never
