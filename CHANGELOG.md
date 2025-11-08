@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.6] - 2025-09-19
+
+- Pinned Netty to 4.2.5.Final
+- Upgraded Spring Framework to 6.2.11
+- Updated Python dependencies
+
+## [1.1.5] - 2025-09-11
+
+- Pinned Netty to 4.2.4.Final to address CVE-2024-47535
+- Pinned Commons Lang3 to 3.18.0 to address CVE-2024-47554
+- Upgraded Spring Framework to 6.2.7 and Spring Boot to 3.4.5
+- Updated Alpine Docker image from 3.21 to 3.22.1
+
+## [1.1.4] - 2025-07-30
+
+- Upgrade Prebid Server Java to v3.28.0
+
+## [1.1.3] - 2025-06-23
+
+- Upgrade Prebid Server Java to v3.27.0
+
+## [1.1.2] - 2025-05-22
+
+- Upgrade Prebid Server Java to v3.25.0
+- Upgrade Python dependencies
+- Fix anonymized metrics reporting Lambda
+
 ## [1.1.1] - 2025-03-07
 
 - Upgrade to Prebid Server v3.22 and underlying Docker base image
