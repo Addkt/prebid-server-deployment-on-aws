@@ -7,7 +7,7 @@ CUSTOM_RESOURCES_PATH = Path(__file__).absolute().parents[1] / "custom_resources
 
 X_SECRET_HEADER_NAME = "X-Header-Secret"
 
-PVT_SUBNET_NAME = "Prebid-Private"
+PVT_SUBNET_NAME = "Prebid-Private" 
 PUB_SUBNET_NAME = "Prebid-Public"
 VPC_CIDR = "10.8.0.0/16" # NOSONAR
 CIDR_MASK = 20
